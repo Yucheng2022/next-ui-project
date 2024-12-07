@@ -22,7 +22,6 @@ const config: Config = {
           700: '#0369a1',
           800: '#075985',
           900: '#0c4a6e',
-          950: '#082f49',
         },
         secondary: {
           50: '#fdf4ff',
@@ -35,7 +34,6 @@ const config: Config = {
           700: '#a21caf',
           800: '#86198f',
           900: '#701a75',
-          950: '#4a044e',
         },
       },
       animation: {
@@ -74,7 +72,6 @@ const config: Config = {
               700: '#0369a1',
               800: '#075985',
               900: '#0c4a6e',
-              950: '#082f49',
               DEFAULT: '#0ea5e9',
               foreground: '#FFFFFF',
             },
@@ -96,7 +93,6 @@ const config: Config = {
               700: '#0369a1',
               800: '#075985',
               900: '#0c4a6e',
-              950: '#082f49',
               DEFAULT: '#0ea5e9',
               foreground: '#FFFFFF',
             },
