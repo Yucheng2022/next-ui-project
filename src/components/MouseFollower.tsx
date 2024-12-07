@@ -1,9 +1,10 @@
 'use client'
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function MouseFollower() {
+  const [isMobile, setIsMobile] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
@@ -12,17 +13,34 @@ export function MouseFollower() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+    // 检测是否为移动设备
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches ||
+                 'ontouchstart' in window);
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
-    return () => {
-      window.removeEventListener("mousemove", moveCursor);
-    };
-  }, []);
+    // 只在非移动设备上添加鼠标跟随
+    if (!isMobile) {
+      const moveCursor = (e: MouseEvent) => {
+        cursorX.set(e.clientX - 16);
+        cursorY.set(e.clientY - 16);
+      };
+
+      window.addEventListener("mousemove", moveCursor);
+      return () => {
+        window.removeEventListener("mousemove", moveCursor);
+        window.removeEventListener('resize', checkMobile);
+      };
+    }
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [isMobile]);
+
+  // 在移动设备上不渲染
+  if (isMobile) return null;
 
   return (
     <motion.div
@@ -33,7 +51,7 @@ export function MouseFollower() {
       }}
     >
       <motion.div
-        className="w-8 h-8 bg-primary/30 rounded-full absolute"
+        className="w-8 h-8 bg-primary/30 rounded-full absolute backdrop-blur-sm"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
