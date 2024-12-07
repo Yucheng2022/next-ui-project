@@ -46,8 +46,8 @@ export default function About() {
             <div className="text-center space-y-4">
               <h2 className="text-2xl font-bold">Our Mission</h2>
               <p className="text-default-500">
-                We're on a mission to make web development more accessible and enjoyable.
-                By combining the power of Next.js with the beauty of NextUI, we're creating
+                We&apos;re on a mission to make web development more accessible and enjoyable.
+                By combining the power of Next.js with the beauty of NextUI, we&apos;re creating
                 tools that help developers build better websites faster.
               </p>
             </div>

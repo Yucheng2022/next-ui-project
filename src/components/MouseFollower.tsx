@@ -37,7 +37,7 @@ export function MouseFollower() {
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, [isMobile]);
+  }, [isMobile, cursorX, cursorY]);
 
   // 在移动设备上不渲染
   if (isMobile) return null;
